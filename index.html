@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogo: Adivinhe o Número</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #282c34;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #61dafb;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Adivinhe o Número!</h1>
+  <p>Digite um número entre 1 e 100:</p>
+  <input type="number" id="palpite" min="1" max="100">
+  <button onclick="verificarPalpite()">Chutar</button>
+  <div id="resultado"></div>
+
+  <script>
+    let numeroSecreto = Math.floor(Math.random() * 100) + 1;
+    let tentativas = 0;
+
+    function verificarPalpite() {
+      const palpite = Number(document.getElementById('palpite').value);
+      const resultado = document.getElementById('resultado');
+      tentativas++;
+
+      if (palpite === numeroSecreto) {
+        resultado.textContent = `🎉 Parabéns! Você acertou em ${tentativas} tentativa(s)!`;
+        resultado.style.color = "lightgreen";
+      } else if (palpite < numeroSecreto) {
+        resultado.textContent = "🔼 Tente um número maior.";
+        resultado.style.color = "orange";
+      } else if (palpite > numeroSecreto) {
+        resultado.textContent = "🔽 Tente um número menor.";
+        resultado.style.color = "orange";
+      }
+    }
+  </script>
+</body>
+</html>
